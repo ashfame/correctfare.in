@@ -1,0 +1,123 @@
+/* =Reset default browser CSS. Based on work by Eric Meyer: http://meyerweb.com/eric/tools/css/reset/index.html
+-------------------------------------------------------------- */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	background: transparent;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+}
+body {
+	line-height: 1;
+}
+h1, h2, h3, h4, h5, h6 {
+	clear: both;
+	font-weight: normal;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote {
+	quotes: none;
+}
+blockquote:before, blockquote:after {
+	content: '';
+	content: none;
+}
+del {
+	text-decoration: line-through;
+}
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+a img {
+	border: none;
+}
+
+body {
+	background-color: #FBCC2A;
+	color: #444;
+}
+
+#wrapper {
+	font-family: Georgia, "Bitstream Charter", serif;
+	padding: 15px;
+	font-size: 2em;
+	text-align: center;
+}
+
+h1 {
+	width: 80%;
+	border-radius: 0 0 45px 45px;
+	margin: auto;
+	text-align: center;
+	margin-bottom: 25px;
+}
+
+p {
+	margin-bottom: 25px;
+}
+
+label {
+	cursor: pointer;
+}
+
+#reading {
+	width: 100px;
+	border-radius: 5px;
+	color: #555;
+}
+
+#cost {
+	background-color: #EEE;
+	margin-top: 10px;
+	padding: 5px;
+	border-radius: 5px;
+	color: #555;
+}
+
+select {
+	-webkit-appearance: button;
+	-webkit-border-radius: 2px;
+	-webkit-box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+	-webkit-padding-end: 20px;
+	-webkit-padding-start: 2px;
+	-webkit-user-select: none;
+	background-image: -webkit-linear-gradient(#FAFAFA, #F4F4F4 40%, #E5E5E5);
+	background-position: center right;
+	background-repeat: no-repeat;
+	border: 1px solid #AAA;
+	color: #555;
+	font-size: inherit;
+	margin: 0;
+	overflow: hidden;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	border-radius: 5px;
+}
+
+input {
+	font-size: inherit;
+	background-color: #EEE;
+	padding-left: 5px;
+	padding-right: 5px;
+	border-radius: 5px;
+}
+
+input[type=radio] {
+	width: 0.7em;
+	height: 0.7em;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html manifest="cache-manifest.php">
+<head>
+	<title>Correct Fare - Auto / Cab (India)</title>
+	<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+	<div id="wrapper">
+		<h1>Correct Fare!</h1>
+		<p>Check if the fare is correct</p>
+		<br />
+		<p>
+			<label>
+				<input type="radio" name="type" value="auto" checked />
+				Auto
+			</label>
+			<label>
+				<input type="radio" name="type" value="cab" />
+				Cab (Taxi)
+			</label>
+		</p>
+		<br />
+		<p>
+			<label>
+				City &rarr;
+				<select id="city">
+					<option value="bangaluru">Bangaluru</option>
+					<option value="delhi">Delhi</option>
+					<option value="mumbai">Mumbai</option>
+				</select>
+			</label>
+		</p>
+		<p>
+			<label>
+				Meter Reading &rarr;
+				<input id="reading" type="text" class="small" placeholder="KM(s)" />
+			</label>
+		</p>
+		<br />
+		<p>You gotta pay <span id="cost">0</span> bucks!</p>
+	</div>
+	<script src="zepto.min.js"></script>
+	<script src="main.js"></script>
+</body>
+</html>
