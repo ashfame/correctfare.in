@@ -121,3 +121,27 @@ input[type=radio] {
 	width: 0.7em;
 	height: 0.7em;
 }
+
+#online-status {
+	font-size: 0.7em;
+	text-align: right;
+	position: absolute;
+	top: 15px;
+	right: 10px;
+}
+
+#status-light {
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+	position: absolute;
+	right: 71px;
+	top: 2px;
+}
+
+.online {
+	background-color: green;
+}
+.offline {
+	background-color: red;
+}

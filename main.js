@@ -81,6 +81,23 @@ cfapp.calculate = function() {
 	Zepto('#cost').text(cfapp.trueRound(cost));
 };
 
+cfapp.checkOnlineStatus = function() {
+	if (navigator.onLine)
+		cfapp.statusIsOnline();
+	else
+		cfapp.statusIsOffline();
+};
+
+cfapp.statusIsOnline = function() {
+	Zepto('#status-light').removeClass('offline').addClass('online');
+	Zepto('#online-status span').text('Online');
+};
+
+cfapp.statusIsOffline = function() {
+	Zepto('#status-light').removeClass('online').addClass('offline');
+	Zepto('#online-status span').text('Offline');
+};
+
 window.addEventListener('load', function(e) {
 	if (window.applicationCache) {
 		window.applicationCache.addEventListener('updateready', function(e) {
@@ -97,9 +114,14 @@ window.addEventListener('load', function(e) {
 	}
 }, false);
 
+window.addEventListener('online',cfapp.statusIsOnline);
+window.addEventListener('offline',cfapp.statusIsOffline);
+
 Zepto(function($){
 	// Load fare rate slabs
 	cfapp.loadData();
+	// Check current online/offline status
+	cfapp.checkOnlineStatus();
 
 	$('#city').change(function(){
 		cfapp.saveSelectedCity($(this).val());
