@@ -16,26 +16,34 @@
 		"auto": {
 			"base_distance" : 2,
 			"base_rate" : 19,
-			"per_km_rate" : 6.5
+			"per_km_rate" : 6.5,
+			"night_timings" : "23:00:00-05:00:00",
+			"night_fare" : "25%"
 		},
 		"cab": {
 			"base_distance" : 1,
 			"base_rate" : 20,
 			"per_km_rate" : 11,
-			"ac_per_km_rate" : 13
+			"ac_per_km_rate" : 13,
+			"night_timings" : "23:00:00-05:00:00",
+			"night_fare" : "25%"
 		}
 	},
 	"mumbai" : {
 		"auto": {
 			"base_distance" : 1.5,
 			"base_rate" : 15,
-			"per_km_rate" : 9.87
+			"per_km_rate" : 9.87,
+			"night_timings" : "00:00:00-05:00:00",
+			"night_fare" : "25%"
 		},
 		"cab": {
 			"base_distance" : 1.5,
 			"base_rate" : 19,
 			"per_km_rate" : 12.35,
-			"ac_per_km_rate" : 0
+			"ac_per_km_rate" : 0,
+			"night_timings" : "00:00:00-05:00:00",
+			"night_fare" : "25%"
 		}
 	}
 }
