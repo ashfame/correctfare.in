@@ -98,9 +98,9 @@ cfapp.statusIsOffline = function() {
 	Zepto('#online-status span').text('Offline');
 };
 
-window.addEventListener('load', function(e) {
+cfapp.onload = function() {
 	if (window.applicationCache) {
-		window.applicationCache.addEventListener('updateready', function(e) {
+		window.applicationCache.addEventListener('updateready', function() {
 			if (window.applicationCache.status == window.applicationCache.UPDATEREADY) { // Browser downloaded a new app cache & is ready to swap out the old cache with new one.
 				// Swap it in and reload the page to get the new hotness.
 				window.applicationCache.swapCache();
@@ -108,12 +108,13 @@ window.addEventListener('load', function(e) {
 					window.location.reload();
 				}
 			} else {
-				// Manifest didn't changed. Nothing new to server.
+				// Manifest didn't change. Nothing new on server.
 			}
 		}, false);
 	}
-}, false);
+};
 
+window.addEventListener('load', cfapp.onload, false);
 window.addEventListener('online',cfapp.statusIsOnline);
 window.addEventListener('offline',cfapp.statusIsOffline);
 
