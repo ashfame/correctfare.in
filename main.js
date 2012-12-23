@@ -51,7 +51,7 @@ cfapp.loadData = function() {
 
 cfapp.trueRound = function(value, digits) {
 	if (!digits) digits = 2;
-    return (Math.round((value*Math.pow(10,digits)).toFixed(digits-1))/Math.pow(10,digits)).toFixed(digits);
+	return (Math.round((value*Math.pow(10,digits)).toFixed(digits-1))/Math.pow(10,digits)).toFixed(digits);
 };
 
 cfapp.calculate = function() {
@@ -63,7 +63,9 @@ cfapp.calculate = function() {
 	console.log('calculating',type,city,kms);
 
 	if (cfapp.data[city]) {
-		if (cfapp.data[city][type]['base_rate'] != 0 && cfapp.data[city][type]['per_km_rate'] != 0) {
+
+		if (cfapp.data[city][type]['state'] == 'good') {
+
 			if (kms < cfapp.data[city][type]['base_distance']) {
 				cost = cfapp.data[city][type]['base_rate']
 			} else {
@@ -71,14 +73,38 @@ cfapp.calculate = function() {
 				// Because the consumer has already paid for base distance as base rate, that won't be included in per km rate calculation
 				cost = cfapp.data[city][type]['base_rate'] + (kms - cfapp.data[city][type]['base_distance']) * cfapp.data[city][type]['per_km_rate'];
 			}
+
+			// apply night charges if its night timings
+			var night_timings;
+			var now = new Date();
+			now = now.getHours()+':'+now.getMinutes() + ':'+now.getSeconds();
+			range_edges = cfapp.data[city][type]['night_timings'].split('-');
+
+			if ( now < range_edges[0] && now > range_edges[1] )
+				night_timings = false;
+			else
+				night_timings = true;
+
+			if (night_timings) {
+				cost += cost * parseInt(cfapp.data[city][type]['night_fare']) / 100; // available as 25% or 50%
+			}
+
 		} else {
 			alert("Sorry! We don't have fare info of " + city + "'s " + type + ' services');
 		}
+
 	} else {
 		alert('Error occured! City is not listed in database.');
 	}
 
+	// fill in cost
 	Zepto('#cost').text(cfapp.trueRound(cost));
+
+	// show hide night timings message
+	if (night_timings)
+		Zepto('#night-msg').show();
+	else
+		Zepto('#night-msg').hide();
 };
 
 cfapp.checkOnlineStatus = function() {

@@ -1,19 +1,26 @@
 {
 	"bangaluru" : {
 		"auto": {
+			"state" : "good",
 			"base_distance" : 1.8,
 			"base_rate" : 20,
-			"per_km_rate" : 11
+			"per_km_rate" : 11,
+			"night_timings" : "23:00:00-05:00:00",
+			"night_fare" : "50%"
 		},
 		"cab": {
+			"state" : "poor",
 			"base_distance" : 0,
 			"base_rate" : 0,
 			"per_km_rate" : 0,
-			"ac_per_km_rate" : 0
+			"ac_per_km_rate" : 0,
+			"night_timings" : "",
+			"night_fare" : ""
 		}
 	},
 	"delhi" : {
 		"auto": {
+			"state" : "good",
 			"base_distance" : 2,
 			"base_rate" : 19,
 			"per_km_rate" : 6.5,
@@ -21,6 +28,7 @@
 			"night_fare" : "25%"
 		},
 		"cab": {
+			"state" : "good",
 			"base_distance" : 1,
 			"base_rate" : 20,
 			"per_km_rate" : 11,
@@ -31,6 +39,7 @@
 	},
 	"mumbai" : {
 		"auto": {
+			"state" : "good",
 			"base_distance" : 1.5,
 			"base_rate" : 15,
 			"per_km_rate" : 9.87,
@@ -38,12 +47,32 @@
 			"night_fare" : "25%"
 		},
 		"cab": {
+			"state" : "fair",
 			"base_distance" : 1.5,
 			"base_rate" : 19,
 			"per_km_rate" : 12.35,
 			"ac_per_km_rate" : 0,
 			"night_timings" : "00:00:00-05:00:00",
 			"night_fare" : "25%"
+		}
+	},
+	"pune" : {
+		"auto": {
+			"state" : "good",
+			"base_distance" : 1,
+			"base_rate" : 11,
+			"per_km_rate" : 10,
+			"night_timings" : "00:00:00-05:00:00",
+			"night_fare" : "50%"
+		},
+		"cab": {
+			"state" : "poor",
+			"base_distance" : 0,
+			"base_rate" : 0,
+			"per_km_rate" : 0,
+			"ac_per_km_rate" : 0,
+			"night_timings" : "",
+			"night_fare" : ""
 		}
 	}
 }

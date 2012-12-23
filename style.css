@@ -139,6 +139,10 @@ input[type=radio] {
 	top: 2px;
 }
 
+#night-msg {
+	font-size: 0.6em;
+}
+
 .online {
 	background-color: green;
 }
