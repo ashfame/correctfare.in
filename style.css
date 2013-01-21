@@ -128,6 +128,7 @@ input[type=radio] {
 	position: absolute;
 	top: 15px;
 	right: 10px;
+	display: none;
 }
 
 #status-light {
@@ -148,4 +149,47 @@ input[type=radio] {
 }
 .offline {
 	background-color: red;
+}
+
+/* Selection colours (easy to forget) */
+
+::selection 	 	{background: rgb(255,255,158);}
+::-moz-selection 	{background: rgb(255,255,158);}
+img::selection 		{background: transparent;}
+img::-moz-selection	{background: transparent;}
+body {-webkit-tap-highlight-color: rgb(255,255,158);}
+
+
+/* Media Queries */
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+	body {
+		width: 712px;
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width: 767px) {
+
+	body {
+		font-size: 10px;
+		width: 100%;
+	}
+	.huge, h1 {
+		font-size: 35px;
+	}
+
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+
+	body {
+		width: 100%;
+		font-size: 10px;
+	}
+	.huge, h1 {
+		font-size: 35px;
+	}
+
 }
