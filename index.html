@@ -2,6 +2,8 @@
 <html manifest="cache-manifest.php">
 <head>
 	<title>Correct Fare - Auto / Cab (India)</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+	<!-- Adding "maximum-scale=1" fixes the Mobile Safari auto-zoom bug: http://filamentgroup.com/examples/iosScaleBug/ -->
 	<link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -12,7 +14,6 @@
 		</div>
 		<h1>Correct Fare!</h1>
 		<p>Check if the fare is correct</p>
-		<br />
 		<p>
 			<label>
 				<input type="radio" name="type" value="auto" checked />
@@ -23,7 +24,6 @@
 				Cab (Taxi)
 			</label>
 		</p>
-		<br />
 		<p>
 			<label>
 				City &rarr;
@@ -40,7 +40,6 @@
 				<input id="reading" type="text" class="small" placeholder="KM(s)" />
 			</label>
 		</p>
-		<br />
 		<p>You gotta pay <span id="cost">0</span> bucks!</p>
 		<p id="night-msg">(Night charges included!)</p>
 	</div>
