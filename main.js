@@ -155,7 +155,8 @@ Zepto(function($){
 		cfapp.calculate();
 	});
 
-	$('#reading').change(function(){
+	// Handle meter reading on keyup event since users don't hit enter on mobile devices, & change event fires when field loses the focus, which never happens if the user doesn't need to go to some other field
+	$('#reading').bind('keyup',function(){
 		cfapp.saveEnteredReading($(this).val());
 		cfapp.calculate();
 	});
