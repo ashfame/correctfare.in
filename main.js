@@ -75,10 +75,21 @@ cfapp.calculate = function() {
 			}
 
 			// apply night charges if its night timings
-			var night_timings;
+			var night_timings = false;
 			var now = new Date();
 			now = now.getHours()+':'+now.getMinutes() + ':'+now.getSeconds();
 			range_edges = cfapp.data[city][type]['night_timings'].split('-');
+
+			// This logic depends on the fact that night timings will not start after 00:00:00
+			// We break down the night timing slots into 2 pieces, one being the time till midnight and second being beyond midnight
+			// In both cases we compare using string comparisons
+			if ( range_edges[0] != '00:00:00' && range_edges[0] < '24:00:00' ) { // using 24:00:00 here to be able to use simple string comparison
+				if ( now > range_edges[0] && now < '24:00:00' )
+					night_timings = true;
+			} else if ( range_edges[0] >= '00:00:00' ) {
+				if ( now >= range_edges[0] && now <= range_edges[1] )
+					night_timings = true;
+			}
 
 			if ( now < range_edges[0] && now > range_edges[1] )
 				night_timings = false;
