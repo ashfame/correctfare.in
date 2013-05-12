@@ -130,9 +130,8 @@ cfapp.onload = function() {
 			if (window.applicationCache.status == window.applicationCache.UPDATEREADY) { // Browser downloaded a new app cache & is ready to swap out the old cache with new one.
 				// Swap it in and reload the page to get the new hotness.
 				window.applicationCache.swapCache();
-				if (1 || confirm('A new version of this site is available. Load it?')) {
-					window.location.reload();
-				}
+				// reload without confirmation since we save user inputs so they won't even notice
+				window.location.reload();
 			} else {
 				// Manifest didn't change. Nothing new on server.
 			}
