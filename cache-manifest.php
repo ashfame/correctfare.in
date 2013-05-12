@@ -36,5 +36,7 @@ foreach(new RecursiveIteratorIterator($dir) as $file) {
 	}
 }
 
+echo 'http://www.google-analytics.com/analytics.js' . "\n\n";
+
 // Hash the $hashes string and output
-echo "# Timestamp Hash: $timestamp"; // This updates whenever a file is modified so that browser detects change in manifest & reloads cache
+echo '# Timestamp Hash: ' . date('W') . $timestamp; // This updates whenever a file is modified or the week changes, as a result of which the browser detects change in manifest & reloads cache

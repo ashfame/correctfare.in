@@ -46,10 +46,14 @@ cfapp.savePageView = function() {
 	}
 };
 
-cfapp.setPageViews = function(count) {
+cfapp.decreasePageView = function() {
+	console.log('decreasing');
 	if (cfapp.supportsLocalStorage) {
 		try {
-			window.localStorage.setItem('pageview',count);
+			var pvs = parseInt(cfapp.getPageViews());
+			console.log(pvs);
+			if (pvs > 0)
+				window.localStorage.setItem('pageview',pvs-1);
 		} catch (e) {
 			// fail silently, we are not storing that much data, that we will exceed storage quota
 		}
@@ -192,11 +196,13 @@ cfapp.processGA = function() {
 
 cfapp.sendPVtoGA = function() {
 	var pvs = parseInt(cfapp.getPageViews());
+	console.log('inside sendPV func',pvs);
 	if (navigator.onLine && pvs > 0) {
 		ga('send', 'pageview', {
 			'hitCallback': function() {
-				cfapp.setPageViews(pvs--);
-				setTimeout(cfapp.sendPVtoGA,300); // send next tracking request after waiting for 300ms, after completion of the preeceding request. This should sum up to more than a second, so should be fine.
+				console.log('inside hitback');
+				cfapp.decreasePageView();
+				setTimeout(cfapp.sendPVtoGA,3000); // send next tracking request after waiting for 300ms, after completion of the preeceding request. This should sum up to more than a second, so should be fine.
 			}
 		});
 	}
