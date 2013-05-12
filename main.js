@@ -36,6 +36,32 @@ cfapp.loadEnteredReading = function() {
 		Zepto('#reading').val(kms);
 };
 
+cfapp.savePageView = function() {
+	if (cfapp.supportsLocalStorage) {
+		var pageview = window.localStorage.getItem('pageview');
+		if (pageview !== null)
+			window.localStorage.setItem('pageview',parseInt(pageview) + 1);
+		else
+			window.localStorage.setItem('pageview',1);
+	}
+};
+
+cfapp.setPageViews = function(count) {
+	if (cfapp.supportsLocalStorage) {
+		try {
+			window.localStorage.setItem('pageview',count);
+		} catch (e) {
+			// fail silently, we are not storing that much data, that we will exceed storage quota
+		}
+	}
+};
+
+cfapp.getPageViews = function() {
+	var pvs = window.localStorage.getItem('pageview');
+	if (pvs !== null)
+		return pvs;
+};
+
 cfapp.loadData = function() {
 	$.getJSON('/data.json',function(data){
 		console.log(data);
@@ -150,6 +176,32 @@ cfapp.onload = function() {
 	}
 };
 
+cfapp.processGA = function() {
+	//if (window.location.hostname == 'correctfare.in') {
+	if (navigator.onLine) {
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-1921427-11', 'correctfare.in');
+		cfapp.sendPVtoGA();
+	}
+	//}
+};
+
+cfapp.sendPVtoGA = function() {
+	var pvs = parseInt(cfapp.getPageViews());
+	if (navigator.onLine && pvs > 0) {
+		ga('send', 'pageview', {
+			'hitCallback': function() {
+				cfapp.setPageViews(pvs--);
+				setTimeout(cfapp.sendPVtoGA,300); // send next tracking request after waiting for 300ms, after completion of the preeceding request. This should sum up to more than a second, so should be fine.
+			}
+		});
+	}
+};
+
 window.addEventListener('load', cfapp.onload, false);
 window.addEventListener('online',cfapp.statusIsOnline);
 window.addEventListener('offline',cfapp.statusIsOffline);
@@ -159,6 +211,8 @@ Zepto(function($){
 	cfapp.loadData();
 	// Check current online/offline status
 	cfapp.checkOnlineStatus();
+	// save PageView
+	cfapp.savePageView();
 
 	$('#city').change(function(){
 		cfapp.saveSelectedCity($(this).val());
@@ -175,4 +229,7 @@ Zepto(function($){
 	$('input[name=type]').change(function(){
 		cfapp.calculate();
 	});
+
+	// Attempt to send data to Google Analytics
+	cfapp.processGA();
 });
