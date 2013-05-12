@@ -161,6 +161,7 @@ Zepto(function($){
 		cfapp.calculate();
 	});
 
+	// Auto or Taxi input has the name "type"
 	$('input[name=type]').change(function(){
 		cfapp.calculate();
 	});
