@@ -22,8 +22,8 @@
 		"auto": {
 			"state" : "good",
 			"base_distance" : 2,
-			"base_rate" : 19,
-			"per_km_rate" : 6.5,
+			"base_rate" : 25,
+			"per_km_rate" : 8,
 			"night_timings" : "23:00:00-05:00:00",
 			"night_fare" : "25%"
 		},
