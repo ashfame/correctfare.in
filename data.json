@@ -30,9 +30,9 @@
 		"cab": {
 			"state" : "good",
 			"base_distance" : 1,
-			"base_rate" : 20,
-			"per_km_rate" : 11,
-			"ac_per_km_rate" : 13,
+			"base_rate" : 25,
+			"per_km_rate" : 14,
+			"ac_per_km_rate" : 16,
 			"night_timings" : "23:00:00-05:00:00",
 			"night_fare" : "25%"
 		}
