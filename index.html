@@ -90,9 +90,11 @@
 	<!-- Discolytics: Offline app analytics -->
 	<script src="discolytics.js"></script>
 	<script>
-		$disco.init({
+	if (window.location.hostname == 'correctfare.in') {
+		disco.init({
 			apiKey: "e4be2a6ee64b42e294d1524e5ff4e911"
 		});
+	}
 	</script>
 	<script src="main.js"></script>
 </body>

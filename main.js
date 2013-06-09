@@ -197,4 +197,6 @@ Zepto(function($){
 	$('input[name=type]').change(function(){
 		cfapp.calculate();
 	});
+
+	disco.trackPage("Home");
 });
