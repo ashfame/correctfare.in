@@ -6,6 +6,7 @@ $files_to_specify = array(
 	'style.css',
 	'zepto.min.js',
 	'main.js',
+	'discolytics.js',
 	'data.json'
 );
 

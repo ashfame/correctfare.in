@@ -34,6 +34,7 @@
 	<link rel="apple-touch-icon" sizes="144x144" href="images/apple-touch-icon-144x144.png" />
 
 	<!-- Google analytics code starts here -->
+	<!--
 	<script>
 	if (window.location.hostname == 'correctfare.in') {
 		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -45,6 +46,7 @@
 		ga('send', 'pageview');
 	}
 	</script>
+	-->
 	<!-- Google analytics code ends here -->
 </head>
 <body>
@@ -85,6 +87,13 @@
 		<p id="night-msg">(Night charges included!)</p>
 	</div>
 	<script src="zepto.min.js"></script>
+	<!-- Discolytics: Offline app analytics -->
+	<script src="discolytics.js"></script>
+	<script>
+		$disco.init({
+			apiKey: "e4be2a6ee64b42e294d1524e5ff4e911"
+		});
+	</script>
 	<script src="main.js"></script>
 </body>
 </html>
