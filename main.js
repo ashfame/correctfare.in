@@ -54,6 +54,47 @@ cfapp.trueRound = function(value, digits) {
 	return (Math.round((value*Math.pow(10,digits)).toFixed(digits-1))/Math.pow(10,digits)).toFixed(digits);
 };
 
+/**
+ * Function which returns whether its night time or not based on night timings passed to it
+ *
+ * If second parameter is passed, then that time is treated as current time to test the logic
+ */
+cfapp.isNightTime = function(night_timings,now) {
+	// now time is passed for testing in debug mode
+	var debug = now != null ? true : false;
+	if (!debug) {
+		var now = new Date();
+		now = now.getHours()+':'+now.getMinutes() + ':'+now.getSeconds();
+	}
+	var isNightTime = false;
+
+	var range_edges = night_timings.split('-');
+
+	// convert to 24 for easy string comparisons
+	if ( range_edges[0] == '00:00:00' )
+		range_edges[0] = '24:00:00';
+
+	/**
+	 * Logic is to split the night timings in two slots and then check both of them
+	 * Slot 1 - start of night timings till midnight
+	 * Slot 2 - midnight till end of night timings
+	 */
+
+	// if night timings start before midnight, like 11PM
+	// and current time is past end of night timings (this is needed else every hour is less than 24)
+	if ( range_edges[0] < '24:00:00' && now > range_edges[1] ) {
+		if ( now >= range_edges[0] && now <= '24:00:00' ) {
+			isNightTime = true;
+		}
+	} else {
+		if ( now >= '00:00:00' && now <= range_edges[1] ) {
+			isNightTime = true;
+		}
+	}
+
+	return isNightTime;
+}
+
 cfapp.calculate = function() {
 	var type = Zepto('input[name=type]:checked').val(),
 	city = Zepto('#city').val(),
@@ -75,26 +116,7 @@ cfapp.calculate = function() {
 			}
 
 			// apply night charges if its night timings
-			var night_timings = false;
-			var now = new Date();
-			now = now.getHours()+':'+now.getMinutes() + ':'+now.getSeconds();
-			range_edges = cfapp.data[city][type]['night_timings'].split('-');
-
-			// This logic depends on the fact that night timings will not start after 00:00:00
-			// We break down the night timing slots into 2 pieces, one being the time till midnight and second being beyond midnight
-			// In both cases we compare using string comparisons
-			if ( range_edges[0] != '00:00:00' && range_edges[0] < '24:00:00' ) { // using 24:00:00 here to be able to use simple string comparison
-				if ( now > range_edges[0] && now < '24:00:00' )
-					night_timings = true;
-			} else if ( range_edges[0] >= '00:00:00' ) {
-				if ( now >= range_edges[0] && now <= range_edges[1] )
-					night_timings = true;
-			}
-
-			if ( now < range_edges[0] && now > range_edges[1] )
-				night_timings = false;
-			else
-				night_timings = true;
+			var night_timings = cfapp.isNightTime(cfapp.data[city][type]['night_timings']);
 
 			if (night_timings) {
 				cost += cost * parseInt(cfapp.data[city][type]['night_fare']) / 100; // available as 25% or 50%
